@@ -13,5 +13,6 @@ class Pizza(models.Model):
 
 
 class Order(models.Model):
+    order_id = models.AutoField(primary_key=True)
     pizza = models.ForeignKey(Pizza)
     customer = models.ForeignKey(Customer)
