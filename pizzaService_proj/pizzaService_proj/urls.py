@@ -16,6 +16,10 @@ Including another URLconf
 from django.conf.urls import url
 from django.contrib import admin
 
+import pizzaService_proj.views as ps
+
 urlpatterns = [
     url(r'^admin/', admin.site.urls),
+    url(r'^time/$', ps.current_datetime),
+    url(r'^time/plus/(\d{1,2})/$', ps.hours_ahead),
 ]
