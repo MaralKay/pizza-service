@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Place Order</title>
+    </head>
+    <body>
+        <h2>Place an order</h2>
+        <form class="order-form" action="" method="post">
+            {% csrf_token %}
+            Full Name:<br>
+            <input type="text" name="name"><br>
+            Address:<br>
+            <input type="text" name="address"><br>
+            Pizza Size:
+            <input type="radio" name="size" value=True checked> 30cm
+            <input type="radio" name="size" value=False>50cm<br>
+            Choose Pizza:
+            <select name="flavor">
+                <option value="Margharita">Margharita</option>
+                <option value="Pepperoni">Pepperoni</option>
+                <option value="Special">Special</option>
+                <option value="Fungi">Fungi</option>
+            </select><br>
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>

@@ -32,6 +32,7 @@
                 <th>Customer Address</th>
                 <th>Pizza Id</th>
                 <th>Pizza Size</th>
+                <th>Pizza Flavor</th>
                 <th>Order Date-Time</th>
             </tr>
             {% for order in orders %}
@@ -44,6 +45,7 @@
                 {% else %}
                 <td>50 cm</td>
                 {% endif %}
+                <td>{{ order.pizza.pizza_flavor }}</td>
                 <td>{{ order.order_datetime }}</td>
             </tr>
             {% endfor %}

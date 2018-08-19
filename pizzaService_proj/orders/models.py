@@ -16,6 +16,7 @@ class Pizza(models.Model):
     pizza_id = models.AutoField(primary_key=True)
     #   We assume that True value stands form 30cm and False value stands for 50cm
     pizza_size = models.BooleanField(default=True)
+    pizza_flavor = models.CharField(default='Surprise', max_length=100)
 
     def __str__(self):
         if self.pizza_size:
