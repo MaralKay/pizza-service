@@ -4,21 +4,18 @@ from django.shortcuts import render
 from orders.models import Order
 
 
-def search_form(request):
-    return render(request, 'orders/search_form.html')
-
-
 def search(request):
-    if 'q' in request.GET and request.GET['q']:
+    error = False
+    if 'q' in request.GET:
         q = request.GET['q']
-        orders = Order.objects.filter(order_id__icontains=q)
-        return render(request, 'orders/search_results.html',
-                      {'orders': orders, 'query': q})
-    else:
-        return HttpResponse('Please submit a search term.')
+        if not q:
+            error = True
+        else:
+            orders = Order.objects.filter(order_id__icontains=q)
+            return render(request, 'orders/search_results.html', {'orders': orders, 'query': q})
+    return render(request, 'orders/search_form.html', {'error': error})
 
 
-def getOrders(request):
+def get_orders(request):
     orders = Order.objects.all()
-    return render(request, 'orders/orders.html',
-                      {'orders': orders})
+    return render(request, 'orders/orders.html', {'orders': orders})

@@ -2,22 +2,50 @@
 <html>
 <head>
     <title>All Orders</title>
+    <style>
+        table {
+            font-family: arial, sans-serif;
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        td, th {
+            border: 1px solid #dddddd;
+            text-align: left;
+            padding: 8px;
+        }
+
+        tr:nth-child(even) {
+            background-color: #dddddd;
+        }
+    </style>
 </head>
 <body>
     <h2>Orders</h2>
     {% if orders %}
         <br>
+        <table style="width:100%">
+            <tr>
+                <th>Customer Name</th>
+                <th>Customer Address</th>
+                <th>Pizza Id</th>
+                <th>Pizza Size</th>
+                <th>Order Date-Time</th>
+            </tr>
             {% for order in orders %}
-                <li>{{ order.customer.customer_name }}</li>
-                <li>{{ order.customer.customer_address }}</li>
+            <tr>
+                <td>{{ order.customer.customer_name }}</td>
+                <td>{{ order.customer.customer_address }}</td>
+                <td>{{ order.pizza.pizza_id }}</td>
                 {% if order.pizza.pizza_size %}
-                    <li>30 cm</li>
+                <td>30 cm</td>
                 {% else %}
-                    <li>50 cm</li>
+                <td>50 cm</td>
                 {% endif %}
-            <br></br>
+                <td>{{ order.order_datetime }}</td>
+            </tr>
             {% endfor %}
-        </ul>
+        </table>
     {% else %}
         <p>No orders found in the database.</p>
     {% endif %}

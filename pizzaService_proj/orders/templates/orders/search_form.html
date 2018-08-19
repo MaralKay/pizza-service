@@ -3,10 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <title>Search Orders</title>
+    <style>
+        .search-form {
+            background-color: grey;
+            color: white;
+            padding: 6px;
+            border: none;
+            margin-top: 8px;
+            margin-right: 16px;
+            font-size: 17px;
+        }
+    </style>
 </head>
 <body>
     <h2>Search an order</h2>
-    <form action="/search/" method="get">
+    {% if error %}
+        <p style="color: red;">Please submit a search term.</p>
+    {% endif %}
+    <form class="search-form" action="" method="get">
         <input type="text" name="q">
         <input type="submit" value="Search">
     </form>
