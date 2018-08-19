@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>All Orders</title>
+</head>
+<body>
+    <h2>Orders</h2>
+    {% if orders %}
+        <br>
+            {% for order in orders %}
+                <li>{{ order.customer.customer_name }}</li>
+                <li>{{ order.customer.customer_address }}</li>
+                {% if order.pizza.pizza_size %}
+                    <li>30 cm</li>
+                {% else %}
+                    <li>50 cm</li>
+                {% endif %}
+            <br></br>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No orders found in the database.</p>
+    {% endif %}
+</body>
+</html>

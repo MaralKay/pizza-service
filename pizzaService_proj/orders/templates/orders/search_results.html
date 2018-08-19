@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <title>Order Search Results</title>
+    </head>
+    <body>
+        <h2>Your search results</h2>
+        <p>You searched for: <strong>{{ query }}</strong></p>
+
+        {% if orders %}
+            <p>Found {{ orders|length }} order{{ orders|pluralize }}.</p>
+            <ul>
+                {% for order in orders %}
+                    <li>{{ order.customer.customer_name }}</li>
+                    <li>{{ order.customer.customer_address }}</li>
+                    {% if order.pizza.pizza_size %}
+                        <li>30 cm</li>
+                    {% else %}
+                        <li>50 cm</li>
+                    {% endif %}
+                {% endfor %}
+            </ul>
+        {% else %}
+            <p>No orders matched your search criteria.</p>
+        {% endif %}
+    </body>
+</html>
