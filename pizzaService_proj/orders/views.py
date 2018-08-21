@@ -24,20 +24,6 @@ def search(request):
 
 
 def add_order(request):
-    #   for the unit test
-    # if data:
-    #     #   create customer
-    #     customer_name = data[0]
-    #     customer_address = data[1]
-    #     customer = Customer(customer_name=customer_name, customer_address=customer_address)
-    #     #   create pizza
-    #     pizza_size = data[2]
-    #     pizza_flavor = data[3]
-    #     pizza = Pizza(pizza_size=pizza_size, pizza_flavor=pizza_flavor)
-    #     #   create order
-    #     order = Order(pizza=pizza, customer=customer)
-    #     return order
-
     if request.POST.get('name') and request.POST.get('address') and request.POST.get('size')\
             and request.POST.get('flavor'):
         #   create customer

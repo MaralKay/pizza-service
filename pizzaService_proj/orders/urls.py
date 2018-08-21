@@ -4,7 +4,6 @@ import orders.views as views
 
 urlpatterns = [
     url(r'^search/$', views.search),
-    #   url(r'^orders/$', views.orders_list),
     url(r'^place-order/$', views.add_order),
     url(r'^orders/$', views.show_orders_form),
     url(r'^remove-orders/$', views.remove_order),
