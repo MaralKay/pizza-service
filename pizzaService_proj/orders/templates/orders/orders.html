@@ -24,40 +24,42 @@
     <h2>Orders</h2>
     {% if orders %}
         <br>
-        <table style="width:100%">
-            <tr>
-                <th>Customer Name</th>
-                <th>Customer Address</th>
-                <th>Pizza Id</th>
-                <th>Pizza Size</th>
-                <th>Pizza Flavor</th>
-                <th>Order Date-Time</th>
-                <th>Actions</th>
-            </tr>
-            {% for order in orders %}
-            <tr>
-                <td>{{ order.customer.customer_name }}</td>
-                <td>{{ order.customer.customer_address }}</td>
-                <td>{{ order.pizza.pizza_id }}</td>
-                {% if order.pizza.pizza_size %}
-                <td>30 cm</td>
-                {% else %}
-                <td>50 cm</td>
-                {% endif %}
-                <td>{{ order.pizza.pizza_flavor }}</td>
-                <td>{{ order.order_datetime }}</td>
-                <td>
-                    <form class="actions-form" action="/orders.html" method="post">
-                        <select name="action">
-                            <option value="edit">edit</option>
-                            <option value="delete">delete</option>
-                        </select>
-                        <button type="submit">Go</button>
+            <table style="width:100%">
+                <tr>
+                    <th>Order Id</th>
+                    <th>Customer Name</th>
+                    <th>Customer Address</th>
+                    <th>Pizza Id</th>
+                    <th>Pizza Size</th>
+                    <th>Pizza Flavor</th>
+                    <th>Order Date-Time</th>
+                    <th>Actions</th>
+                </tr>
+                {% for order in orders %}
+                <tr>
+                    <form action="" method="post">
+                        <td>{{ order.order_id }}</td>
+                        <td>{{ order.customer.customer_name }}</td>
+                        <td>{{ order.customer.customer_address }}</td>
+                        <td>{{ order.pizza.pizza_id }}</td>
+                        {% if order.pizza.pizza_size %}
+                        <td>30 cm</td>
+                        {% else %}
+                        <td>50 cm</td>
+                        {% endif %}
+                        <td>{{ order.pizza.pizza_flavor }}</td>
+                        <td>{{ order.order_datetime }}</td>
+                        <td>
+                            {% csrf_token %}
+                            <input type="hidden" name="order-id" value="{{ order.order_id }}">
+                            <input type="submit" name="action" value="edit">
+                            <input type="submit" name="action" value="delete">
+                        </td>
                     </form>
-                </td>
-            </tr>
-            {% endfor %}
-        </table>
+                </tr>
+                {% endfor %}
+            </table>
+        </form>
     {% else %}
         <p>No orders found in the database.</p>
     {% endif %}

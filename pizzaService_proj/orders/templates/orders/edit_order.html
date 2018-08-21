@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <title>Place Order</title>
+    </head>
+    <body>
+        <h2>Place an order</h2>
+        <form action="/edited/" method="post">
+            {% csrf_token %}
+            <p>Order Id: {{ order.order_id }}</p>
+            Full Name:<br>
+            <input type="text" name="name" value="{{ order.customer.customer_name }}"><br>
+            Address:<br>
+            <input type="text" name="address" value="{{ order.customer.customer_address }}"><br>
+            Pizza Size:
+            {% if order.pizza.pizza_size %}
+                <input type="radio" name="size" value=True checked> 30cm
+                <input type="radio" name="size" value=False>50cm<br>
+            {% else %}
+                <input type="radio" name="size" value=True> 30cm
+                <input type="radio" name="size" value=False checked>50cm<br>
+            {% endif %}
+            Choose Pizza:<br>
+            Your current choice is <b>{{ order.pizza.pizza_flavor }}</b>.
+            <select name="flavor">
+                <option value="Margharita" >Margharita</option>
+                <option value="Pepperoni">Pepperoni</option>
+                <option value="Special">Special</option>
+                <option value="Fungi">Fungi</option>
+            </select><br>
+            <input type="hidden" name="order-id" value="{{ order.order_id }}">
+            <input type="submit" value="Submit">
+        </form>
+    </body>
+</html>

@@ -11,6 +11,9 @@ class Customer(models.Model):
     def __str__(self):
         return u'%s %s' % (self.customer_id, self.customer_address)
 
+    def delete(self, *args, **kwargs):
+        super().delete(*args, **kwargs)
+
 
 class Pizza(models.Model):
     pizza_id = models.AutoField(primary_key=True)
@@ -25,6 +28,9 @@ class Pizza(models.Model):
             size = '50cm'
         return u'%s %s' % (self.pizza_id, size)
 
+    def delete(self, *args, **kwargs):
+        super().delete(*args, **kwargs)
+
 
 class Order(models.Model):
     order_id = models.AutoField(primary_key=True)
@@ -34,3 +40,6 @@ class Order(models.Model):
 
     def __str__(self):
         return u'%s %s %s' % (self.order_id, self.customer.customer_name, self.pizza)
+
+    def delete(self, *args, **kwargs):
+        super().delete(*args, **kwargs)
