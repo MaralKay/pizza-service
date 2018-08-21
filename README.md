@@ -5,7 +5,10 @@ A simple django service to place, edit and delete pizza orders into a postgresql
 *Prerequisites: Python, Pip, Python Virtual Environment*
 
 ## To run the service
-* Clone the project and navigate to `/pizza-service/pizzaService_proj/` .
+* Clone the project.
+* Go in the project directory: `cd pizza-service`.
+* Activate the virtual environment by running `env_pizzaService\Scripts\activate`.
+* Go in: `cd pizzaService_proj`.
 * Install required packges by running `pip install -r requirements.txt` .
   You might need administrator permissions for some packages to be installed.
 * Set-up the database by running `python manage.py migrate`
@@ -23,8 +26,8 @@ A simple django service to place, edit and delete pizza orders into a postgresql
 
 ## Test
 *In order to run the tests you will need to give the user permission to create a test database. To do that, run*
-`ALTER USER pizza_lover CREATEDB;`
-*in your postgresql shell*.
+ `ALTER USER pizza_lover CREATEDB;`
+ *in your postgresql shell*.
 There is currently one test, which tests the order placement submission.
 To run the test run the command `python manage.py test orders` .
 If the form is submitted successfully for order creation, the test is also successful.
