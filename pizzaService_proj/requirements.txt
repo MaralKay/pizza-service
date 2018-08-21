@@ -3,3 +3,4 @@ postgres==2.2.1
 psycopg2==2.7.1
 pytz==2017.2
 djangorestframework
+requests[security]==2.9.1
