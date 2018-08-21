@@ -3,7 +3,9 @@
 A simple django service to place, edit and delete pizza orders into a postgresql database.
 
 *Prerequisites: Python, Pip, Python Virtual Environment*
-*Developed in: OS: Windows 10, IDE: PyCharm
+
+*Developed in: OS: Windows 10, IDE: PyCharm*
+
 ## To run the service
 * Clone the project.
 * Go in the project directory: `cd pizza-service`.
