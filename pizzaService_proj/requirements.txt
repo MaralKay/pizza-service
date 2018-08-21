@@ -2,5 +2,5 @@ Django==1.11.2
 postgres==2.2.1
 psycopg2==2.7.1
 pytz==2017.2
-djangorestframework
+djangorestframework==3.8.2
 requests[security]==2.9.1
