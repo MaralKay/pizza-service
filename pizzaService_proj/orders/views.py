@@ -77,7 +77,11 @@ def remove_order(request):
         orders = Order.objects.all()
         order_id = request.POST.get('order-id')
         order = Order.objects.get(order_id=order_id)
+        pizza = order.pizza
+        customer = order.customer
         order.delete()
+        pizza.delete()
+        customer.delete()
         return render(request, 'orders/remove_orders.html', {'form': form, 'orders': orders})
 
 
