@@ -47,15 +47,12 @@ A simple django service to place, edit and delete pizza orders into a postgresql
 * **List of orders:** http://127.0.0.1:8000/orders/
 
 * **Edit an order:** At http://127.0.0.1:8000/orders/ click on *edit button* and you will be redirected to the editing form.
-
                      To view the changes go to *http://127.0.0.1:8000/orders/* again.
                      
 * **Search for an order:** http://127.0.0.1:8000/search/ (currently you can only search by *order id* which is useless, will
-
                            update it asap)
                            
 * **Delete an order:** At http://127.0.0.1:8000/orders/ click on *delete button* for the order you want to delete.
-
                        To view the changes go to *http://127.0.0.1:8000/orders/* again.
 
 ## Test
