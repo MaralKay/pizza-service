@@ -22,7 +22,7 @@ A simple django service to place, edit and delete pizza orders into a postgresql
 
   You might need administrator permissions for some packages to be installed.
 
-## Set up the database
+## Set up the database and run the server
 
 * In your postgresql shell (psql) run the following:
 
