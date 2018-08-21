@@ -18,9 +18,13 @@ A simple django service to place, edit and delete pizza orders into a postgresql
 ## Set up the database
 * In your postgresql shell (psql) run the following:
   `CREATE USER pizza_lover WITH PASSWORD 'ilovepizza';`
+  
   `CREATE DATABASE pizza_service_db OWNER pizza_lover;`
+  
   `ALTER USER pizza_lover WITH SUPERUSER;`
+  
   `ALTER USER pizza_lover CREATEDB;`
+  
 * In pizza-service\pizzaService_proj\ run: `python manage.py createsuperuser --username pizza_lover`
 * migrate the database by running `python manage.py migrate`
 * Run the server: `python manage.py runserver`
