@@ -9,6 +9,9 @@ from orders.models import Pizza
 
 from orders.forms import OrdersForm
 from orders.forms import EditForm
+from rest_framework import generics
+
+from orders.serializers import OrderSerializer
 
 
 def search(request):
@@ -104,3 +107,20 @@ def edit_order(request):
         print(datetime.now)
         order.save()
         return render(request, 'orders/edited.html')
+
+
+class CreateView(generics.ListCreateAPIView):
+    """This class defines the create behavior of our rest api."""
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
+    def perform_create(self, serializer):
+        """Save the post data when creating a new bucketlist."""
+        serializer.save()
+
+
+class DetailsView(generics.RetrieveUpdateDestroyAPIView):
+    """This class handles the http GET, PUT and DELETE requests."""
+
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
