@@ -1,5 +1,4 @@
 from datetime import datetime
-from django.db import models
 
 from django.shortcuts import render
 
@@ -11,7 +10,7 @@ from orders.forms import OrdersForm
 from orders.forms import EditForm
 from rest_framework import generics
 
-from orders.serializers import OrderSerializer
+from orders.serializers import OrderSerializer, CustomerSerializer, PizzaSerializer
 
 
 def search(request):
@@ -109,18 +108,30 @@ def edit_order(request):
         return render(request, 'orders/edited.html')
 
 
-class CreateView(generics.ListCreateAPIView):
-    """This class defines the create behavior of our rest api."""
+class CreateOrderView(generics.ListCreateAPIView):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
 
     def perform_create(self, serializer):
-        """Save the post data when creating a new bucketlist."""
+        serializer.save()
+
+
+class CreatePizzaView(generics.ListCreateAPIView):
+    queryset = Pizza.objects.all()
+    serializer_class = PizzaSerializer
+
+    def perform_create(self, serializer):
+        serializer.save()
+
+
+class CreateCustomerView(generics.ListCreateAPIView):
+    queryset = Customer.objects.all()
+    serializer_class = CustomerSerializer
+
+    def perform_create(self, serializer):
         serializer.save()
 
 
 class DetailsView(generics.RetrieveUpdateDestroyAPIView):
-    """This class handles the http GET, PUT and DELETE requests."""
-
     queryset = Order.objects.all()
     serializer_class = OrderSerializer

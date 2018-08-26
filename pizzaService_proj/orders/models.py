@@ -8,6 +8,9 @@ class Customer(models.Model):
     customer_name = models.CharField(max_length=80)
     customer_address = models.CharField(max_length=100)
 
+    class Meta:
+        db_table = 'orders_customer'
+
     def __str__(self):
         return u'%s %s' % (self.customer_id, self.customer_address)
 
@@ -20,6 +23,9 @@ class Pizza(models.Model):
     #   We assume that True value stands form 30cm and False value stands for 50cm
     pizza_size = models.BooleanField(default=True)
     pizza_flavor = models.CharField(default='Surprise', max_length=100)
+
+    class Meta:
+        db_table = 'orders_pizza'
 
     def __str__(self):
         if self.pizza_size:
@@ -37,6 +43,9 @@ class Order(models.Model):
     pizza = models.ForeignKey(Pizza)
     customer = models.ForeignKey(Customer)
     order_datetime = models.DateTimeField(default=datetime.datetime.now, blank=True)
+
+    class Meta:
+        db_table = 'orders_order'
 
     def __str__(self):
         return u'%s %s %s' % (self.order_id, self.customer.customer_name, self.pizza)

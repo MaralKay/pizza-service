@@ -17,10 +17,8 @@ from orders.models import Order
 
 
 class ModelTestCase(TestCase):
-    """This class defines the test suite for the order model."""
 
     def setUp(self):
-        """Define the test client and other test variables."""
         self.customer_name = 'Test Name'
         self.customer_address = 'Test Address'
         self.customer = Customer(customer_name=self.customer_name, customer_address=self.customer_address)
@@ -32,7 +30,6 @@ class ModelTestCase(TestCase):
         self.order = Order(customer=self.customer, pizza=self.pizza)
 
     def test_model_create_customer(self):
-        """Test the bucketlist model can create a bucketlist."""
         old_count = Customer.objects.count()
         self.customer.save()
         new_count = Customer.objects.count()
@@ -40,42 +37,35 @@ class ModelTestCase(TestCase):
 
 
 class ViewTestCase(TestCase):
-    """Test suite for the api views."""
 
     def setUp(self):
-        """Define the test client and other test variables."""
         self.client = APIClient()
-        self.order_data = {'order_id': 5}
+        self.order_data = {'order_id': 14}
         self.response = self.client.post(reverse('create'), self.order_data, format='json')
 
     def test_create_order(self):
-        """Test the api has order creation capability."""
         self.assertEqual(self.response.status_code, status.HTTP_201_CREATED)
 
     def test_get_order(self):
-        """Test the api can get a given bucketlist."""
-        order = Order.objects.get()
+        order = Order.objects.last()
+        print(Order.objects.count())
         response = self.client.get(
-            reverse('details',kwargs={'pk': order.order_id}), format="json")
+            reverse('details', order.order_id, format="json"))
 
         self.assertEqual(response.status_code, status.HTTP_200_OK)
         self.assertContains(response, order)
 
     def test_update_order(self):
-        """Test the api can update a given bucketlist."""
-        order = Order.objects.get()
+        order = Order.objects.last()
         pizza = Pizza(pizza_size=True, pizza_flavor='New flavor')
         change_order = {'pizza': pizza}
         res = self.client.put(
-            reverse('details', kwargs={'pk': order.order_id}),
-            change_order, format='json'
-        )
+            reverse('details', order.order_id, change_order, format='json'))
         self.assertEqual(res.status_code, status.HTTP_200_OK)
 
     def test_delete_order(self):
-        """Test the api can delete a bucketlist."""
-        order = Order.objects.get()
+        order = Order.objects.last()
         response = self.client.delete(
-            reverse('details', kwargs={'pk': order.order_id}), format='json', follow=True)
+            reverse('details', order.order_id, format='json', follow=True))
 
         self.assertEquals(response.status_code, status.HTTP_204_NO_CONTENT)
