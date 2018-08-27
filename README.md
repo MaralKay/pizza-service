@@ -74,9 +74,7 @@ A simple django service to place, edit and delete pizza orders into a postgresql
 
 ## Test
 
-There is currently one test, which tests the order placement submission.
+To run the tests run the command `python manage.py test orders` .
 
-To run the test run the command `python manage.py test orders` .
-
-If the form is submitted successfully for order creation, the test is also successful.
+The tests call the API views in reverse.
 
