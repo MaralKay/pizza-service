@@ -3,7 +3,8 @@ import orders.views as views
 
 from orders.views import CreateOrderView, CreateCustomerView, CreatePizzaView
 
-from orders.views import DetailsView
+from orders.views import DetailsView, DetailsViewSet
+
 
 urlpatterns = [
     url(r'^search/$', views.search),
@@ -13,8 +14,9 @@ urlpatterns = [
     url(r'^edit-order/$', views.show_edit_form),
     url(r'^edited/$', views.edit_order),
     #   api endpoints
-    url(r'^add-order/$', CreateOrderView.as_view(), name='create'),
-    url(r'^add-customer/$', CreateCustomerView.as_view(), name='create'),
-    url(r'^add-pizza/$', CreatePizzaView.as_view(), name='create'),
-    url(r'^order-details/(?P<pk>[0-9]+)/$', DetailsView.as_view(), name="details"),
+    url(r'^add-customer/$', CreateCustomerView.as_view(), name='create_customer'),
+    url(r'^add-pizza/$', CreatePizzaView.as_view(), name='create_pizza'),
+    url(r'^add-order/$', CreateOrderView.as_view(), name='create_order'),
+    url(r'^order-details/(?P<pk>[0-9]+)/$', DetailsView.as_view(), name="details_id"),
+    url(r'^order-details/$', DetailsViewSet.as_view({'get': 'list'}), name="details"),
 ]

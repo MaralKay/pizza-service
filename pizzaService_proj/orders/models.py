@@ -17,6 +17,10 @@ class Customer(models.Model):
     def delete(self, *args, **kwargs):
         super().delete(*args, **kwargs)
 
+    def create(cls, customer_name, customer_address):
+        customer = cls(customer_name=customer_name, customer_address=customer_address)
+        return customer
+
 
 class Pizza(models.Model):
     pizza_id = models.AutoField(primary_key=True)
@@ -37,6 +41,10 @@ class Pizza(models.Model):
     def delete(self, *args, **kwargs):
         super().delete(*args, **kwargs)
 
+    def create(cls, pizza_size, pizza_flavor):
+        pizza = cls(pizza_size=pizza_size, pizza_flavor=pizza_flavor)
+        return pizza
+
 
 class Order(models.Model):
     order_id = models.AutoField(primary_key=True)
@@ -52,3 +60,7 @@ class Order(models.Model):
 
     def delete(self, *args, **kwargs):
         super().delete(*args, **kwargs)
+
+    def create(cls, customer, pizza):
+        order = cls(customer=customer, pizza=pizza)
+        return order

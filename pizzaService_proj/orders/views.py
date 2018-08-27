@@ -8,9 +8,10 @@ from orders.models import Pizza
 
 from orders.forms import OrdersForm
 from orders.forms import EditForm
-from rest_framework import generics
+from rest_framework import generics, viewsets
 
 from orders.serializers import OrderSerializer, CustomerSerializer, PizzaSerializer
+from rest_framework.response import Response
 
 
 def search(request):
@@ -133,5 +134,10 @@ class CreateCustomerView(generics.ListCreateAPIView):
 
 
 class DetailsView(generics.RetrieveUpdateDestroyAPIView):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
+
+class DetailsViewSet(viewsets.ModelViewSet):
     queryset = Order.objects.all()
     serializer_class = OrderSerializer
