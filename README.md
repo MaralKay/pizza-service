@@ -51,7 +51,7 @@ A simple django service to place, edit and delete pizza orders into a postgresql
 * **Add an order:** http://127.0.0.1:8000/add-order/
   When adding an order for a new customer you have to first add a customer, then add a pizza and then add an order selecting those objects for its fields.
 
-### GET and PUT for updating and deleting
+### GET, PUT and DELETE for updating and deleting
 
 * **Get/Update/Delete an order:** http://127.0.0.1:8000/order-details/(put your order id here)/
 
